@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>component组件 测试实例</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="vue_det">
+		<p>参考：https://cn.vuejs.org/v2/guide/components.html</p>
+		<br>
+		<test></test>
+		<p>组件传递参数:</p>
+		<demo msg="hello,gas！"></demo>
+
+		<p>组件使用b-bind动态绑定值:</p>
+		<input type="text" v-model="parentMsg">
+		<br>
+		<demo v-bind:msg="parentMsg"></demo>
+	</div>
+	<script type="text/javascript">
+	//  全局组件
+	var Child = {template: '<h3>自定义组件!</h3>'}
+
+	// 注册
+	Vue.component('demo',{
+		props: ['msg'],
+		template: '<span>{{msg}}</span>'
+	})
+
+	var vm = new Vue({
+		el: '#vue_det',
+
+		components: {
+			'test': Child
+		},
+		data: {
+			parentMsg: '父组件内容'
+		}
+	})
+
+	</script>
+</body>
+</html>

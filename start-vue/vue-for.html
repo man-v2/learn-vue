@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>v-for测试实例</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="vue_det">
+		<p>v-for 数组</p>
+		<ul>
+			<li v-for="(n,index) in numbers">{{"序号："+index+" "}} {{n}}</li>
+		</ul>
+
+		<p>v-for 数组值对象</p>
+		<ol>
+			<li v-for="(c,index) in cars ">{{c.name}}-{{c.value}}</li>
+		</ol>
+
+		<p>v-for 对象</p>
+		<ol>
+			<li v-for="(value,key,index) in car">{{key}}:{{value}}</li>
+		</ol>
+
+	</div>
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: '#vue_det',
+		data: {
+			numbers: [1,2,3,4],
+			cars: [
+				{name:'大众',value:'德国品牌'},
+				{name:'哈佛',value:'中国品牌'},
+				{name:'丰田',value:'日本品牌'}
+			],
+			car: {name:'大众',vendor:'德国品牌',price:'偏高'}
+		}
+	})
+
+	</script>
+</body>
+</html>

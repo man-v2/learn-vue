@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>vue模板语法</title>
+	<style>
+		.txt{
+			color: red;
+			background: #888888;
+			width: 50px;
+		}
+	</style>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="vue_det">
+		<ol>
+			<li>数据绑定："{{}}"</li>
+			<p>{{msg}}</p>
+			<li>数据绑定："v-html"</li>
+			<p><div v-html="msg2"></div></p>
+			<li>属性绑定：v-bind</li>
+			<p>
+				<input type="text" v-model="bind">
+				<div v-bind:class="style" >{{bind}}</div>
+			</p>
+
+			<li>条件语句：v-if,v-else-if,v-else</li>
+			<div v-if="len==1">
+				len==1
+			</div>
+			<div v-else-if="len==2">
+				len==2
+			</div>
+			<div v-else>
+				{{len}}
+			</div>
+
+			<li>事件：v-on:click，简写：@click</li>
+			<button type="button" @click="check" width="50px">clickMe</button>
+		</ol>
+	</div>
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: '#vue_det',
+		data: {
+			msg: "hello,vue",
+			msg2: "<h2>hello,vue</html>",
+			bind: "v-bind",
+			style: "txt",
+			len: 8
+		},
+		methods:{
+			check: function(){
+				alert('click:check');
+			}
+		}
+	})
+
+	</script>
+</body>
+</html>

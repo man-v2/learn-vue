@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>监听watch 测试实例</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="vue_det">
+		<p>参考：https://cn.vuejs.org/v2/guide/computed.html</p>
+		<p>watch作用：实时监听数据变化并改变自身的值</p>
+		<br>
+		<p>示例：</p>
+		<div class="">
+			千米:
+			<input type="text" name="kilometers" v-model="kilometers"/>
+			米：<input type="text" name="meters" v-model="meters"/>
+		</div>
+		<p id="info"></p>
+		<br>
+		<p><h3>watch vs computed</h3></p>
+		<p>①从属性名上，computed是计算属性，也就是依赖其它的属性计算所得出最后的值。watch是去监听一个值的变化，然后执行相对应的函数。</p>
+		<p>②从实现上，computed的值在getter执行后是会缓存的，只有在它依赖的属性值改变之后，下一次获取computed的值时才会重新调用对应的getter来计算。watch在每次监听的值变化时，都会执行回调。其实从这一点来看，都是在依赖的值变化之后，去执行回调。很多功能本来就很多属性都可以用，只不过有更适合的。如果一个值依赖多个属性（多对一），用computed肯定是更加方便的。如果一个值变化后会引起一系列操作，或者一个值变化会引起一系列值的变化（一对多），用watch更加方便一些。
+		<p>③watch的回调里面会传入监听属性的新旧值，通过这两个值可以做一些特定的操作。computed通常就是简单的计算。</p>
+④watch和computed并没有哪个更底层，watch内部调用的是vm.$watch，它们的共同之处就是每个定义的属性都单独建立了一个Watcher对象。</p>
+	</div>
+
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: '#vue_det',
+		data: {
+				kilometers: 0,
+				meters: 0
+		},
+		watch: {
+			kilometers: function(val){
+				this.kilometers = val
+				this.meters = val*1000
+			},
+			meters: function(val){
+				this.kilometers = val /1000
+				this.meter = val
+			}
+		}
+	});
+
+	// $watch 是一个实例方法
+  vm.$watch('kilometers', function (newValue,oldValue) {
+  // 这个回调将在 vm.kilometers 改变后调用
+  document.getElementById ("info").innerHTML = "修改前值为: " + oldValue + "，修改后值为: " + newValue;});
+
+	</script>
+</body>
+</html>

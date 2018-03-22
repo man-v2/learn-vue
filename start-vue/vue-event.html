@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>事件处理测试实例</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="vue_det">
+		<p>参考：https://cn.vuejs.org/v2/guide/events.html</p>
+		<p>v-on:click监听</p>
+		<button v-on:click="counter += 1">点 {{ counter }} 次</button>
+
+		<p>v-on:click="method_name"</p>
+		<button v-on:click.once="autoAdd">只能点 {{ cnter }} 次</button>
+
+		<p>事件修饰符</p>
+		<input v-on:keyup.enter="submit">
+
+	</div>
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: '#vue_det',
+		data: {
+			counter:0,
+			cnter:0
+		},
+		methods: {
+			autoAdd: function(){
+				this.cnter++
+			},
+			submit: function(){
+				alert('submit');
+			}
+		}
+	})
+
+	</script>
+</body>
+</html>

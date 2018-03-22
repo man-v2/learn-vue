@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>v-computed计算属性测试实例</title>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="vue_det">
+		<p>vue computed 原理参考：https://segmentfault.com/a/1190000010408657</p>
+		<p>computed vs methods</p>
+		<p>我们可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。</p>
+		<br>
+		<p>示例：</p>
+		<div class="">
+			<input type="text" name="" v-model="message"/>
+			<p>原始字符串：{{message}}</p>
+		</div>
+		  反转后字符串：
+			<!-- {{ message.split('').reverse().join('') }} -->
+			{{reversedMsg}}
+	</div>
+	<script type="text/javascript">
+	var vm = new Vue({
+		el: '#vue_det',
+		data: {
+			message: '12345'
+		},
+		computed: {
+			// 计算属性的 getter
+			reversedMsg: function(){
+				// `this` 指向 vm 实例
+				return this.message.split('').reverse().join('')
+			}
+		}
+	})
+
+	</script>
+</body>
+</html>
